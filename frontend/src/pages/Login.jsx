@@ -52,7 +52,7 @@ export default function Login() {
             <label className="text-xs font-semibold text-[var(--text-secondary)]">Username or Email</label>
             <input
               type="text"
-              placeholder="e.g. hiteshchoudhary or user@example.com"
+              placeholder="e.g. arpitrajput or user@example.com"
               value={usernameOrEmail}
               onChange={(e) => setUsernameOrEmail(e.target.value)}
               className="w-full h-11 mt-1 px-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
