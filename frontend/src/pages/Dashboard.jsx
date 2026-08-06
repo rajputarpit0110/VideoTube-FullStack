@@ -97,126 +97,126 @@ export default function Dashboard() {
 
   if (!user) {
     return (
-      <div className="py-20 text-center text-lg text-[var(--text-secondary)]">
+      <div className="py-16 sm:py-20 text-center text-base sm:text-lg text-[var(--text-secondary)]">
         Sign in to access Creator Dashboard.
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col gap-8 py-2">
+    <div className="max-w-7xl mx-auto flex flex-col gap-6 sm:gap-8 py-2 w-full min-w-0">
       {/* Header & Upload Button */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border-color)] pb-4">
-        <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Welcome back, {user.fullName}! 👋</h1>
-          <p className="text-xs text-[var(--text-secondary)]">Channel analytics and video management studio</p>
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-color)] pb-4 w-full min-w-0">
+        <div className="min-w-0">
+          <h1 className="text-lg sm:text-2xl font-bold text-[var(--text-primary)] truncate">Welcome back, {user.fullName}! 👋</h1>
+          <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] truncate">Channel analytics and video management studio</p>
         </div>
 
         <button
           onClick={() => setShowUploadModal(true)}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white font-semibold text-xs shadow-lg shadow-purple-600/30 transition-all"
+          className="flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white font-semibold text-xs shadow-lg shadow-purple-600/30 transition-all shrink-0"
         >
-          <FiUpload size={16} />
+          <FiUpload size={14} className="sm:text-[16px]" />
           <span>Upload Video</span>
         </button>
       </div>
 
       {/* Analytics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-purple-600/15 text-purple-500">
-            <FiEye size={24} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 w-full min-w-0">
+        <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-3 sm:gap-4">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-purple-600/15 text-purple-500 shrink-0">
+            <FiEye size={20} className="sm:text-[24px]" />
           </div>
-          <div>
-            <p className="text-xs font-medium text-[var(--text-secondary)]">Total Views</p>
-            <h3 className="text-xl font-bold text-[var(--text-primary)]">{formatViews(stats?.totalViews)}</h3>
-          </div>
-        </div>
-
-        <div className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-blue-500/15 text-blue-500">
-            <FiUsers size={24} />
-          </div>
-          <div>
-            <p className="text-xs font-medium text-[var(--text-secondary)]">Total Subscribers</p>
-            <h3 className="text-xl font-bold text-[var(--text-primary)]">{stats?.totalSubscribers || 0}</h3>
+          <div className="min-w-0">
+            <p className="text-[11px] sm:text-xs font-medium text-[var(--text-secondary)]">Total Views</p>
+            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">{formatViews(stats?.totalViews)}</h3>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-pink-500/15 text-pink-500">
-            <FiThumbsUp size={24} />
+        <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-3 sm:gap-4">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-blue-500/15 text-blue-500 shrink-0">
+            <FiUsers size={20} className="sm:text-[24px]" />
           </div>
-          <div>
-            <p className="text-xs font-medium text-[var(--text-secondary)]">Total Likes</p>
-            <h3 className="text-xl font-bold text-[var(--text-primary)]">{stats?.totalLikes || 0}</h3>
+          <div className="min-w-0">
+            <p className="text-[11px] sm:text-xs font-medium text-[var(--text-secondary)]">Total Subscribers</p>
+            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">{stats?.totalSubscribers || 0}</h3>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-emerald-500/15 text-emerald-500">
-            <FiVideo size={24} />
+        <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-3 sm:gap-4">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-pink-500/15 text-pink-500 shrink-0">
+            <FiThumbsUp size={20} className="sm:text-[24px]" />
           </div>
-          <div>
-            <p className="text-xs font-medium text-[var(--text-secondary)]">Total Videos</p>
-            <h3 className="text-xl font-bold text-[var(--text-primary)]">{stats?.totalVideos || 0}</h3>
+          <div className="min-w-0">
+            <p className="text-[11px] sm:text-xs font-medium text-[var(--text-secondary)]">Total Likes</p>
+            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">{stats?.totalLikes || 0}</h3>
+          </div>
+        </div>
+
+        <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center gap-3 sm:gap-4">
+          <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-500/15 text-emerald-500 shrink-0">
+            <FiVideo size={20} className="sm:text-[24px]" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-[11px] sm:text-xs font-medium text-[var(--text-secondary)]">Total Videos</p>
+            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">{stats?.totalVideos || 0}</h3>
           </div>
         </div>
       </div>
 
       {/* Video Management Table */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-bold text-[var(--text-primary)]">Uploaded Videos</h2>
-        <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] overflow-x-auto shadow-sm">
-          <table className="w-full text-left text-sm text-[var(--text-primary)]">
-            <thead className="bg-[var(--bg-tertiary)] text-[var(--text-secondary)] uppercase text-xs">
+      <div className="flex flex-col gap-3 sm:gap-4 w-full min-w-0">
+        <h2 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">Uploaded Videos</h2>
+        <div className="rounded-xl sm:rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] overflow-x-auto shadow-sm w-full min-w-0">
+          <table className="w-full text-left text-xs sm:text-sm text-[var(--text-primary)]">
+            <thead className="bg-[var(--bg-tertiary)] text-[var(--text-secondary)] uppercase text-[10px] sm:text-xs">
               <tr>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Video</th>
-                <th className="px-4 py-3">Views</th>
-                <th className="px-4 py-3">Likes</th>
-                <th className="px-4 py-3">Uploaded</th>
-                <th className="px-4 py-3 text-right">Actions</th>
+                <th className="px-3 sm:px-4 py-2.5 sm:py-3">Status</th>
+                <th className="px-3 sm:px-4 py-2.5 sm:py-3">Video</th>
+                <th className="px-3 sm:px-4 py-2.5 sm:py-3">Views</th>
+                <th className="px-3 sm:px-4 py-2.5 sm:py-3">Likes</th>
+                <th className="px-3 sm:px-4 py-2.5 sm:py-3">Uploaded</th>
+                <th className="px-3 sm:px-4 py-2.5 sm:py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--border-color)]">
               {videos.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="text-center py-8 text-[var(--text-secondary)]">
+                  <td colSpan={6} className="text-center py-8 text-[var(--text-secondary)] text-xs sm:text-sm">
                     No videos uploaded yet. Click "Upload Video" to start sharing!
                   </td>
                 </tr>
               ) : (
                 videos.map((video) => (
                   <tr key={video._id} className="hover:bg-[var(--bg-tertiary)]/50 transition-colors">
-                    <td className="px-4 py-3">
+                    <td className="px-3 sm:px-4 py-2.5 sm:py-3">
                       <button
                         onClick={() => handleTogglePublish(video._id)}
-                        className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
+                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold whitespace-nowrap ${
                           video.isPublished ? 'bg-emerald-500/15 text-emerald-500' : 'bg-amber-500/15 text-amber-500'
                         }`}
                       >
-                        {video.isPublished ? <FiToggleRight size={16} /> : <FiToggleLeft size={16} />}
+                        {video.isPublished ? <FiToggleRight size={14} /> : <FiToggleLeft size={14} />}
                         <span>{video.isPublished ? 'Published' : 'Draft'}</span>
                       </button>
                     </td>
-                    <td className="px-4 py-3 flex items-center gap-3 min-w-[240px]">
-                      <img src={video.thumbnail} alt={video.title} className="w-16 h-10 rounded-lg object-cover bg-zinc-800" />
-                      <div className="flex flex-col">
-                        <span className="font-semibold line-clamp-1">{video.title}</span>
-                        <span className="text-xs text-[var(--text-secondary)] line-clamp-1">{video.description}</span>
+                    <td className="px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2.5 sm:gap-3 min-w-[200px] sm:min-w-[240px]">
+                      <img src={video.thumbnail} alt={video.title} className="w-12 h-8 sm:w-16 sm:h-10 rounded-lg object-cover bg-zinc-800 shrink-0" />
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-semibold text-xs sm:text-sm line-clamp-1">{video.title}</span>
+                        <span className="text-[10px] sm:text-xs text-[var(--text-secondary)] line-clamp-1">{video.description}</span>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-xs">{formatViews(video.views)}</td>
-                    <td className="px-4 py-3 text-xs">{video.likesCount || 0}</td>
-                    <td className="px-4 py-3 text-xs">{new Date(video.createdAt).toLocaleDateString()}</td>
-                    <td className="px-4 py-3 text-right">
+                    <td className="px-3 sm:px-4 py-2.5 sm:py-3 text-[11px] sm:text-xs whitespace-nowrap">{formatViews(video.views)}</td>
+                    <td className="px-3 sm:px-4 py-2.5 sm:py-3 text-[11px] sm:text-xs whitespace-nowrap">{video.likesCount || 0}</td>
+                    <td className="px-3 sm:px-4 py-2.5 sm:py-3 text-[11px] sm:text-xs whitespace-nowrap">{new Date(video.createdAt).toLocaleDateString()}</td>
+                    <td className="px-3 sm:px-4 py-2.5 sm:py-3 text-right">
                       <button
                         onClick={() => handleDeleteVideo(video._id)}
-                        className="p-2 rounded-full hover:bg-red-500/10 text-red-400 transition-colors"
+                        className="p-1.5 sm:p-2 rounded-full hover:bg-red-500/10 text-red-400 transition-colors"
                         title="Delete Video"
                       >
-                        <FiTrash2 size={16} />
+                        <FiTrash2 size={15} className="sm:text-[16px]" />
                       </button>
                     </td>
                   </tr>
@@ -229,16 +229,16 @@ export default function Dashboard() {
 
       {/* Upload Video Modal */}
       {showUploadModal && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-3xl w-full max-w-lg p-6 shadow-2xl animate-in fade-in zoom-in duration-200">
-            <div className="flex items-center justify-between pb-4 border-b border-[var(--border-color)]">
-              <h3 className="font-bold text-lg text-[var(--text-primary)]">Upload New Video</h3>
-              <button onClick={() => setShowUploadModal(false)} className="p-2 rounded-full hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
-                <FiX size={20} />
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl sm:rounded-3xl w-full max-w-lg p-4 sm:p-6 shadow-2xl animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-[var(--border-color)]">
+              <h3 className="font-bold text-base sm:text-lg text-[var(--text-primary)]">Upload New Video</h3>
+              <button onClick={() => setShowUploadModal(false)} className="p-1.5 sm:p-2 rounded-full hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
+                <FiX size={18} className="sm:text-[20px]" />
               </button>
             </div>
 
-            <form onSubmit={handleUploadSubmit} className="flex flex-col gap-4 mt-4">
+            <form onSubmit={handleUploadSubmit} className="flex flex-col gap-3 sm:gap-4 mt-3 sm:mt-4">
               <div>
                 <label className="text-xs font-semibold text-[var(--text-secondary)]">Title</label>
                 <input
@@ -246,7 +246,7 @@ export default function Dashboard() {
                   placeholder="Enter video title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+                  className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
                   required
                 />
               </div>
@@ -258,19 +258,19 @@ export default function Dashboard() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={3}
-                  className="w-full mt-1 px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500 resize-none"
+                  className="w-full mt-1 px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500 resize-none"
                   required
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="text-xs font-semibold text-[var(--text-secondary)]">Video File (MP4/WebM)</label>
                   <input
                     type="file"
                     accept="video/*"
                     onChange={(e) => setVideoFile(e.target.files[0])}
-                    className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
+                    className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
                     required
                   />
                 </div>
@@ -281,24 +281,24 @@ export default function Dashboard() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => setThumbnail(e.target.files[0])}
-                    className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
+                    className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
                     required
                   />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 mt-4">
+              <div className="flex justify-end gap-2.5 sm:gap-3 mt-3 sm:mt-4">
                 <button
                   type="button"
                   onClick={() => setShowUploadModal(false)}
-                  className="px-5 py-2 rounded-full text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]"
+                  className="px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={uploading}
-                  className="px-6 py-2 rounded-full text-xs font-semibold bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white shadow-lg shadow-purple-600/30 transition-all"
+                  className="px-5 py-1.5 sm:px-6 sm:py-2 rounded-full text-xs font-semibold bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white shadow-lg shadow-purple-600/30 transition-all"
                 >
                   {uploading ? 'Uploading...' : 'Publish Video'}
                 </button>

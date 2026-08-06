@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
 import axiosInstance from '../utils/axios';
 import { timeAgo } from '../utils/formatters';
-import { FiSend, FiHeart, FiTrash2 } from 'react-icons/fi';
+import { FiHeart, FiTrash2 } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function CommentSection({ videoId }) {
@@ -85,40 +85,40 @@ export default function CommentSection({ videoId }) {
   };
 
   return (
-    <div className="flex flex-col gap-6 mt-8 pt-6 border-t border-[var(--border-color)]">
-      <h3 className="font-bold text-lg text-[var(--text-primary)]">
+    <div className="flex flex-col gap-4 sm:gap-6 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[var(--border-color)] w-full min-w-0">
+      <h3 className="font-bold text-base sm:text-lg text-[var(--text-primary)]">
         {comments.length} Comment{comments.length === 1 ? '' : 's'}
       </h3>
 
       {/* Add comment box */}
-      <form onSubmit={handleAddComment} className="flex gap-4">
+      <form onSubmit={handleAddComment} className="flex gap-2.5 sm:gap-4 w-full min-w-0">
         <img
           src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
           alt="Avatar"
-          className="w-10 h-10 rounded-full object-cover shrink-0 border border-[var(--border-color)]"
+          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover shrink-0 border border-[var(--border-color)]"
         />
-        <div className="flex-1 flex flex-col gap-2">
+        <div className="flex-1 flex flex-col gap-2 min-w-0">
           <input
             type="text"
             placeholder={user ? "Add a comment..." : "Sign in to leave a comment"}
             value={newComment}
             disabled={!user}
             onChange={(e) => setNewComment(e.target.value)}
-            className="w-full bg-[var(--bg-secondary)] border-b border-[var(--border-color)] focus:border-purple-500 text-[var(--text-primary)] text-sm px-3 py-2 outline-none transition-colors"
+            className="w-full bg-[var(--bg-secondary)] border-b border-[var(--border-color)] focus:border-purple-500 text-[var(--text-primary)] text-xs sm:text-sm px-2.5 py-1.5 sm:px-3 sm:py-2 outline-none transition-colors"
           />
           {user && (
             <div className="flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => setNewComment('')}
-                className="px-4 py-1.5 rounded-full text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]"
+                className="px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={submitting || !newComment.trim()}
-                className="px-4 py-1.5 rounded-full text-xs font-semibold bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white transition-colors"
+                className="px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full text-xs font-semibold bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white transition-colors"
               >
                 Comment
               </button>
@@ -129,28 +129,28 @@ export default function CommentSection({ videoId }) {
 
       {/* Comments List */}
       {loading ? (
-        <div className="text-sm text-[var(--text-secondary)]">Loading comments...</div>
+        <div className="text-xs sm:text-sm text-[var(--text-secondary)]">Loading comments...</div>
       ) : comments.length === 0 ? (
-        <div className="text-sm text-[var(--text-secondary)] italic">No comments yet. Be the first to comment!</div>
+        <div className="text-xs sm:text-sm text-[var(--text-secondary)] italic">No comments yet. Be the first to comment!</div>
       ) : (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-4 sm:gap-5 w-full min-w-0">
           {comments.map((comment) => {
             const owner = comment.owner || {};
             const isOwner = user?._id === owner._id;
 
             return (
-              <div key={comment._id} className="flex gap-4">
+              <div key={comment._id} className="flex gap-2.5 sm:gap-4 w-full min-w-0">
                 <img
                   src={owner.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
                   alt={owner.fullName}
-                  className="w-9 h-9 rounded-full object-cover shrink-0 border border-[var(--border-color)]"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover shrink-0 border border-[var(--border-color)]"
                 />
-                <div className="flex-1 flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-xs text-[var(--text-primary)]">@{owner.username || 'user'}</span>
+                <div className="flex-1 flex flex-col gap-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-semibold text-xs text-[var(--text-primary)] truncate max-w-[120px] sm:max-w-none">@{owner.username || 'user'}</span>
                     <span className="text-[10px] text-[var(--text-secondary)]">{timeAgo(comment.createdAt)}</span>
                   </div>
-                  <p className="text-sm text-[var(--text-primary)] leading-relaxed">{comment.content}</p>
+                  <p className="text-xs sm:text-sm text-[var(--text-primary)] leading-relaxed break-words min-w-0">{comment.content}</p>
 
                   <div className="flex items-center gap-4 mt-1">
                     <button

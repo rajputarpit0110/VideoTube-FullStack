@@ -37,17 +37,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-3xl p-8 shadow-2xl flex flex-col gap-6">
+    <div className="min-h-[80vh] flex items-center justify-center p-3 sm:p-4 w-full min-w-0">
+      <div className="w-full max-w-md bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl flex flex-col gap-4 sm:gap-6">
         <div className="flex flex-col items-center text-center gap-2">
-          <div className="bg-red-600 text-white p-3 rounded-2xl shadow-lg shadow-red-600/30">
-            <FaYoutube size={32} />
+          <div className="bg-red-600 text-white p-2.5 sm:p-3 rounded-2xl shadow-lg shadow-red-600/30">
+            <FaYoutube size={28} className="sm:text-[32px]" />
           </div>
-          <h1 className="text-2xl font-extrabold text-[var(--text-primary)]">Welcome to VideoTube</h1>
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[var(--text-primary)]">Welcome to VideoTube</h1>
           <p className="text-xs text-[var(--text-secondary)]">Sign in to your creator account</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
           <div>
             <label className="text-xs font-semibold text-[var(--text-secondary)]">Username or Email</label>
             <input
@@ -55,7 +55,7 @@ export default function Login() {
               placeholder="e.g. arpitrajput or user@example.com"
               value={usernameOrEmail}
               onChange={(e) => setUsernameOrEmail(e.target.value)}
-              className="w-full h-11 mt-1 px-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-10 sm:h-11 mt-1 px-3 sm:px-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -67,7 +67,7 @@ export default function Login() {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-11 mt-1 px-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-10 sm:h-11 mt-1 px-3 sm:px-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -75,7 +75,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-11 mt-2 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-purple-600/30 transition-all"
+            className="w-full h-10 sm:h-11 mt-2 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 transition-all"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>

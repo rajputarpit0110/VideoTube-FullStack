@@ -44,18 +44,18 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center p-4">
-      <div className="w-full max-w-lg bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-3xl p-8 shadow-2xl flex flex-col gap-6">
+    <div className="min-h-[85vh] flex items-center justify-center p-3 sm:p-4 w-full min-w-0">
+      <div className="w-full max-w-lg bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-2xl flex flex-col gap-4 sm:gap-6">
         <div className="flex flex-col items-center text-center gap-2">
-          <div className="bg-red-600 text-white p-3 rounded-2xl shadow-lg shadow-red-600/30">
-            <FaYoutube size={32} />
+          <div className="bg-red-600 text-white p-2.5 sm:p-3 rounded-2xl shadow-lg shadow-red-600/30">
+            <FaYoutube size={28} className="sm:text-[32px]" />
           </div>
-          <h1 className="text-2xl font-extrabold text-[var(--text-primary)]">Create Your Account</h1>
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[var(--text-primary)]">Create Your Account</h1>
           <p className="text-xs text-[var(--text-secondary)]">Join the VideoTube creator network</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="text-xs font-semibold text-[var(--text-secondary)]">Full Name *</label>
               <input
@@ -63,7 +63,7 @@ export default function Register() {
                 placeholder="Arpit Rajput"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+                className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
                 required
               />
             </div>
@@ -75,7 +75,7 @@ export default function Register() {
                 placeholder="arpitrajput"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+                className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
                 required
               />
             </div>
@@ -88,7 +88,7 @@ export default function Register() {
               placeholder="user@videotube.dev"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -100,19 +100,19 @@ export default function Register() {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="text-xs font-semibold text-[var(--text-secondary)]">Avatar Image *</label>
               <input
                 type="file"
                 accept="image/*"
                 onChange={(e) => setAvatar(e.target.files[0])}
-                className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
+                className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] sm:file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
                 required
               />
             </div>
@@ -123,7 +123,7 @@ export default function Register() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setCoverImage(e.target.files[0])}
-                className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
+                className="w-full text-xs text-[var(--text-secondary)] mt-1 file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] sm:file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
               />
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-11 mt-2 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white font-semibold text-sm shadow-lg shadow-purple-600/30 transition-all"
+            className="w-full h-10 sm:h-11 mt-2 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-purple-600/30 transition-all"
           >
             {loading ? 'Registering...' : 'Create Account'}
           </button>

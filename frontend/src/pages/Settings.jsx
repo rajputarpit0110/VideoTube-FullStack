@@ -23,7 +23,7 @@ export default function Settings() {
 
   if (!user) {
     return (
-      <div className="py-20 text-center text-lg text-[var(--text-secondary)]">
+      <div className="py-16 sm:py-20 text-center text-base sm:text-lg text-[var(--text-secondary)]">
         Please sign in to access account settings.
       </div>
     );
@@ -105,21 +105,21 @@ export default function Settings() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto flex flex-col gap-8 py-2">
-      <div className="flex items-center gap-3 border-b border-[var(--border-color)] pb-4">
-        <div className="p-2.5 rounded-xl bg-purple-600/15 text-purple-500">
-          <FiSettings size={24} />
+    <div className="max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8 py-2 w-full min-w-0">
+      <div className="flex items-center gap-2.5 sm:gap-3 border-b border-[var(--border-color)] pb-4 w-full min-w-0">
+        <div className="p-2 sm:p-2.5 rounded-xl bg-purple-600/15 text-purple-500 shrink-0">
+          <FiSettings size={20} className="sm:text-[24px]" />
         </div>
-        <div>
-          <h1 className="text-xl font-bold text-[var(--text-primary)]">Account Settings</h1>
-          <p className="text-xs text-[var(--text-secondary)]">Manage profile information, images, and security</p>
+        <div className="min-w-0">
+          <h1 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">Account Settings</h1>
+          <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] truncate">Manage profile information, images, and security</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 w-full min-w-0">
         {/* Personal Details */}
-        <form onSubmit={handleUpdateDetails} className="p-6 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-4">
-          <div className="flex items-center gap-2 font-bold text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
+        <form onSubmit={handleUpdateDetails} className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-3 sm:gap-4 w-full min-w-0">
+          <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
             <FiUser size={16} className="text-purple-500" />
             <span>Profile Information</span>
           </div>
@@ -130,7 +130,7 @@ export default function Settings() {
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -141,7 +141,7 @@ export default function Settings() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -156,8 +156,8 @@ export default function Settings() {
         </form>
 
         {/* Change Password */}
-        <form onSubmit={handleChangePassword} className="p-6 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-4">
-          <div className="flex items-center gap-2 font-bold text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
+        <form onSubmit={handleChangePassword} className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-3 sm:gap-4 w-full min-w-0">
+          <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
             <FiLock size={16} className="text-purple-500" />
             <span>Change Password</span>
           </div>
@@ -169,7 +169,7 @@ export default function Settings() {
               placeholder="••••••••"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
-              className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -181,7 +181,7 @@ export default function Settings() {
               placeholder="••••••••"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-purple-500"
+              className="w-full h-9 sm:h-10 mt-1 px-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] text-xs sm:text-sm focus:outline-none focus:border-purple-500"
               required
             />
           </div>
@@ -196,19 +196,19 @@ export default function Settings() {
         </form>
 
         {/* Avatar Image Update */}
-        <form onSubmit={handleUpdateAvatar} className="p-6 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-4">
-          <div className="flex items-center gap-2 font-bold text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
+        <form onSubmit={handleUpdateAvatar} className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-3 sm:gap-4 w-full min-w-0">
+          <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
             <FiImage size={16} className="text-purple-500" />
             <span>Update Avatar</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <img src={user.avatar} alt="Avatar" className="w-14 h-14 rounded-full object-cover border border-[var(--border-color)] shrink-0" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full min-w-0">
+            <img src={user.avatar} alt="Avatar" className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border border-[var(--border-color)] shrink-0" />
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setAvatar(e.target.files[0])}
-              className="w-full text-xs text-[var(--text-secondary)] file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
+              className="w-full text-xs text-[var(--text-secondary)] file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] sm:file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
               required
             />
           </div>
@@ -223,21 +223,21 @@ export default function Settings() {
         </form>
 
         {/* Cover Image Update */}
-        <form onSubmit={handleUpdateCover} className="p-6 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-4">
-          <div className="flex items-center gap-2 font-bold text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
+        <form onSubmit={handleUpdateCover} className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col gap-3 sm:gap-4 w-full min-w-0">
+          <div className="flex items-center gap-2 font-bold text-xs sm:text-sm text-[var(--text-primary)] border-b border-[var(--border-color)] pb-3">
             <FiImage size={16} className="text-purple-500" />
             <span>Update Cover Image</span>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 w-full min-w-0">
             {user.coverImage && (
-              <img src={user.coverImage} alt="Cover" className="w-full h-16 rounded-xl object-cover border border-[var(--border-color)]" />
+              <img src={user.coverImage} alt="Cover" className="w-full h-14 sm:h-16 rounded-xl object-cover border border-[var(--border-color)]" />
             )}
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setCoverImage(e.target.files[0])}
-              className="w-full text-xs text-[var(--text-secondary)] file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
+              className="w-full text-xs text-[var(--text-secondary)] file:mr-2 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] sm:file:text-xs file:font-semibold file:bg-purple-600 file:text-white"
               required
             />
           </div>

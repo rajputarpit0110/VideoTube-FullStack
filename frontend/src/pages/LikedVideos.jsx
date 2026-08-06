@@ -31,13 +31,13 @@ export default function LikedVideos() {
 
   if (!user) {
     return (
-      <div className="py-20 text-center flex flex-col items-center gap-3">
-        <FiThumbsUp size={48} className="text-purple-500" />
-        <h2 className="text-xl font-bold text-[var(--text-primary)]">Save your favorite videos</h2>
-        <p className="text-sm text-[var(--text-secondary)]">Sign in to view your liked videos.</p>
+      <div className="py-16 sm:py-20 text-center flex flex-col items-center gap-3 px-4">
+        <FiThumbsUp size={40} className="text-purple-500 sm:text-[48px]" />
+        <h2 className="text-lg sm:text-xl font-bold text-[var(--text-primary)]">Save your favorite videos</h2>
+        <p className="text-xs sm:text-sm text-[var(--text-secondary)]">Sign in to view your liked videos.</p>
         <Link
           to="/login"
-          className="mt-2 px-6 py-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm transition-colors shadow-lg shadow-purple-600/30"
+          className="mt-2 px-5 py-2 sm:px-6 sm:py-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs sm:text-sm transition-colors shadow-lg shadow-purple-600/30"
         >
           Sign In
         </Link>
@@ -46,29 +46,29 @@ export default function LikedVideos() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col gap-6 py-2">
-      <div className="flex items-center gap-3 border-b border-[var(--border-color)] pb-4">
-        <div className="p-2.5 rounded-xl bg-pink-500/15 text-pink-500">
-          <FiThumbsUp size={24} />
+    <div className="max-w-7xl mx-auto flex flex-col gap-4 sm:gap-6 py-2 w-full min-w-0">
+      <div className="flex items-center gap-2.5 sm:gap-3 border-b border-[var(--border-color)] pb-4 w-full min-w-0">
+        <div className="p-2 sm:p-2.5 rounded-xl bg-pink-500/15 text-pink-500 shrink-0">
+          <FiThumbsUp size={20} className="sm:text-[24px]" />
         </div>
-        <div>
-          <h1 className="text-xl font-bold text-[var(--text-primary)]">Liked Videos</h1>
-          <p className="text-xs text-[var(--text-secondary)]">{likedVideos.length} videos liked by you</p>
+        <div className="min-w-0">
+          <h1 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">Liked Videos</h1>
+          <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] truncate">{likedVideos.length} videos liked by you</p>
         </div>
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0">
           {Array.from({ length: 4 }).map((_, idx) => (
             <VideoSkeleton key={idx} />
           ))}
         </div>
       ) : likedVideos.length === 0 ? (
-        <div className="py-20 text-center text-sm text-[var(--text-secondary)]">
+        <div className="py-16 sm:py-20 text-center text-xs sm:text-sm text-[var(--text-secondary)]">
           You haven't liked any videos yet.
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0">
           {likedVideos.map((video) => (
             <VideoCard key={video._id} video={video} />
           ))}

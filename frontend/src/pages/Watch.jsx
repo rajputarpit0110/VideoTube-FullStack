@@ -97,16 +97,16 @@ export default function Watch() {
 
   if (loading) {
     return (
-      <div className="flex flex-col gap-4 max-w-7xl mx-auto py-4">
-        <div className="w-full aspect-video rounded-3xl bg-[var(--bg-tertiary)] animate-pulse" />
-        <div className="w-1/2 h-8 bg-[var(--bg-tertiary)] rounded animate-pulse" />
+      <div className="flex flex-col gap-4 max-w-7xl mx-auto py-4 w-full">
+        <div className="w-full aspect-video rounded-xl sm:rounded-3xl bg-[var(--bg-tertiary)] animate-pulse" />
+        <div className="w-1/2 h-6 sm:h-8 bg-[var(--bg-tertiary)] rounded animate-pulse" />
       </div>
     );
   }
 
   if (!video) {
     return (
-      <div className="py-20 text-center text-lg text-[var(--text-secondary)]">
+      <div className="py-20 text-center text-base sm:text-lg text-[var(--text-secondary)]">
         Video not found.
       </div>
     );
@@ -115,31 +115,31 @@ export default function Watch() {
   const owner = video.owner || {};
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 py-2">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 py-2 w-full min-w-0">
       {/* Left Column: Player & Video Info */}
-      <div className="lg:col-span-2 flex flex-col gap-4">
+      <div className="lg:col-span-2 flex flex-col gap-3 sm:gap-4 min-w-0">
         <VideoPlayer src={video.videoFile} poster={video.thumbnail} />
 
-        <h1 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] leading-snug">
+        <h1 className="text-lg sm:text-2xl font-bold text-[var(--text-primary)] leading-snug break-words min-w-0">
           {video.title}
         </h1>
 
         {/* Channel Info & Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-4 py-2 border-b border-[var(--border-color)]">
+        <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 py-2 border-b border-[var(--border-color)] w-full min-w-0">
           {/* Owner details */}
-          <div className="flex items-center gap-3">
-            <Link to={`/c/${owner.username}`}>
+          <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap sm:flex-nowrap min-w-0">
+            <Link to={`/c/${owner.username}`} className="shrink-0">
               <img
                 src={owner.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
                 alt={owner.fullName}
-                className="w-11 h-11 rounded-full object-cover border border-[var(--border-color)]"
+                className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover border border-[var(--border-color)]"
               />
             </Link>
-            <div className="flex flex-col">
-              <Link to={`/c/${owner.username}`} className="font-bold text-sm text-[var(--text-primary)] hover:underline">
+            <div className="flex flex-col min-w-0">
+              <Link to={`/c/${owner.username}`} className="font-bold text-xs sm:text-sm text-[var(--text-primary)] hover:underline truncate max-w-[130px] sm:max-w-none">
                 {owner.fullName || owner.username}
               </Link>
-              <span className="text-xs text-[var(--text-secondary)]">
+              <span className="text-[10px] sm:text-xs text-[var(--text-secondary)]">
                 {subscribersCount} subscriber{subscribersCount === 1 ? '' : 's'}
               </span>
             </div>
@@ -147,46 +147,46 @@ export default function Watch() {
             {user?._id !== owner._id && (
               <button
                 onClick={handleToggleSubscribe}
-                className={`ml-2 px-4 py-2 rounded-full font-semibold text-xs transition-all flex items-center gap-2 ${
+                className={`ml-1 sm:ml-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full font-semibold text-xs transition-all flex items-center gap-1.5 sm:gap-2 shrink-0 ${
                   isSubscribed
                     ? 'bg-[var(--bg-tertiary)] text-[var(--text-primary)] border border-[var(--border-color)]'
                     : 'bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-600/30'
                 }`}
               >
-                {isSubscribed && <FiBell size={14} />}
+                {isSubscribed && <FiBell size={13} className="sm:text-[14px]" />}
                 <span>{isSubscribed ? 'Subscribed' : 'Subscribe'}</span>
               </button>
             )}
           </div>
 
           {/* Video Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap shrink-0">
             <button
               onClick={handleToggleLike}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold border transition-all ${
                 isLiked
                   ? 'bg-pink-500/15 border-pink-500 text-pink-500'
                   : 'bg-[var(--bg-secondary)] border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
               }`}
             >
-              <FiThumbsUp size={16} className={isLiked ? 'fill-pink-500' : ''} />
+              <FiThumbsUp size={14} className={`sm:text-[16px] ${isLiked ? 'fill-pink-500' : ''}`} />
               <span>{likesCount}</span>
             </button>
 
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all"
             >
-              <FiShare2 size={16} />
+              <FiShare2 size={14} className="sm:text-[16px]" />
               <span>Share</span>
             </button>
 
             {user && (
               <button
                 onClick={() => setShowPlaylistModal(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all"
+                className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all"
               >
-                <FiBookmark size={16} />
+                <FiBookmark size={14} className="sm:text-[16px]" />
                 <span>Save</span>
               </button>
             )}
@@ -194,13 +194,13 @@ export default function Watch() {
         </div>
 
         {/* Video Description Box */}
-        <div className="p-4 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-primary)] flex flex-col gap-2">
-          <div className="flex items-center gap-3 font-semibold text-[var(--text-secondary)]">
+        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-primary)] flex flex-col gap-2 w-full min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 font-semibold text-[var(--text-secondary)] text-[11px] sm:text-xs">
             <span>{formatViews(video.views)} views</span>
             <span>•</span>
             <span>{timeAgo(video.createdAt)}</span>
           </div>
-          <p className="leading-relaxed whitespace-pre-line">{video.description}</p>
+          <p className="leading-relaxed whitespace-pre-line break-words">{video.description}</p>
         </div>
 
         {/* Comment Section */}
@@ -208,9 +208,9 @@ export default function Watch() {
       </div>
 
       {/* Right Column: Related Videos */}
-      <div className="flex flex-col gap-4">
-        <h3 className="font-bold text-base text-[var(--text-primary)]">Related Videos</h3>
-        <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 min-w-0">
+        <h3 className="font-bold text-sm sm:text-base text-[var(--text-primary)]">Related Videos</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
           {relatedVideos.map((relVideo) => (
             <VideoCard key={relVideo._id} video={relVideo} />
           ))}

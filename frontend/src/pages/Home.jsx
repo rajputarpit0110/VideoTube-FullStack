@@ -37,14 +37,14 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-7xl mx-auto">
+    <div className="flex flex-col gap-4 sm:gap-6 max-w-7xl mx-auto w-full min-w-0">
       {/* Category Chips */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none w-full min-w-0 max-w-full">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+            className={`px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
               selectedCategory === cat
                 ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
                 : 'bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-purple-500/50'
@@ -57,18 +57,18 @@ export default function Home() {
 
       {/* Videos Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0">
           {Array.from({ length: 8 }).map((_, idx) => (
             <VideoSkeleton key={idx} />
           ))}
         </div>
       ) : videos.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-center">
-          <p className="text-lg font-semibold text-[var(--text-primary)]">No videos found</p>
-          <p className="text-sm text-[var(--text-secondary)] mt-1">Try searching for something else or clearing filters.</p>
+        <div className="flex flex-col items-center justify-center py-16 sm:py-20 text-center">
+          <p className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">No videos found</p>
+          <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-1">Try searching for something else or clearing filters.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full min-w-0">
           {videos.map((video) => (
             <VideoCard key={video._id} video={video} />
           ))}

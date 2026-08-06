@@ -82,42 +82,42 @@ export default function Tweets() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto flex flex-col gap-6 py-2">
+    <div className="max-w-2xl mx-auto flex flex-col gap-4 sm:gap-6 py-2 w-full min-w-0">
       {/* Page Header */}
-      <div className="flex items-center gap-3 border-b border-[var(--border-color)] pb-4">
-        <div className="p-2.5 rounded-xl bg-purple-600/15 text-purple-500">
-          <FiMessageSquare size={24} />
+      <div className="flex items-center gap-3 border-b border-[var(--border-color)] pb-4 w-full min-w-0">
+        <div className="p-2 sm:p-2.5 rounded-xl bg-purple-600/15 text-purple-500 shrink-0">
+          <FiMessageSquare size={20} className="sm:text-[24px]" />
         </div>
-        <div>
-          <h1 className="text-xl font-bold text-[var(--text-primary)]">Community Tweets</h1>
-          <p className="text-xs text-[var(--text-secondary)]">Share thoughts, updates, and discussions</p>
+        <div className="min-w-0">
+          <h1 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] truncate">Community Tweets</h1>
+          <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] truncate">Share thoughts, updates, and discussions</p>
         </div>
       </div>
 
       {/* Tweet Composer */}
       {user && (
-        <form onSubmit={handleCreateTweet} className="p-4 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex gap-4">
+        <form onSubmit={handleCreateTweet} className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex gap-3 sm:gap-4 w-full min-w-0">
           <img
             src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'}
             alt="Avatar"
-            className="w-10 h-10 rounded-full object-cover shrink-0 border border-[var(--border-color)]"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover shrink-0 border border-[var(--border-color)]"
           />
-          <div className="flex-1 flex flex-col gap-3">
+          <div className="flex-1 flex flex-col gap-2.5 sm:gap-3 min-w-0">
             <textarea
               placeholder="What's happening in tech today?"
               value={newTweet}
               onChange={(e) => setNewTweet(e.target.value)}
               rows={3}
-              className="w-full bg-transparent text-[var(--text-primary)] text-sm outline-none resize-none placeholder-[var(--text-secondary)]"
+              className="w-full bg-transparent text-[var(--text-primary)] text-xs sm:text-sm outline-none resize-none placeholder-[var(--text-secondary)]"
             />
-            <div className="flex justify-between items-center border-t border-[var(--border-color)] pt-3">
-              <span className="text-xs text-[var(--text-secondary)]">{280 - newTweet.length} characters left</span>
+            <div className="flex flex-wrap justify-between items-center border-t border-[var(--border-color)] pt-2.5 sm:pt-3 gap-2">
+              <span className="text-[10px] sm:text-xs text-[var(--text-secondary)]">{280 - newTweet.length} characters left</span>
               <button
                 type="submit"
                 disabled={submitting || !newTweet.trim()}
-                className="flex items-center gap-2 px-5 py-2 rounded-full font-semibold text-xs bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white shadow-lg shadow-purple-600/25 transition-all"
+                className="flex items-center gap-1.5 sm:gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full font-semibold text-xs bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white shadow-lg shadow-purple-600/25 transition-all"
               >
-                <FiSend size={14} />
+                <FiSend size={13} className="sm:text-[14px]" />
                 <span>Post Tweet</span>
               </button>
             </div>
@@ -127,17 +127,17 @@ export default function Tweets() {
 
       {/* Tweet Feed */}
       {loading ? (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 sm:gap-4 w-full">
           {Array.from({ length: 4 }).map((_, idx) => (
             <TweetSkeleton key={idx} />
           ))}
         </div>
       ) : tweets.length === 0 ? (
-        <div className="py-20 text-center text-sm text-[var(--text-secondary)]">
+        <div className="py-16 sm:py-20 text-center text-xs sm:text-sm text-[var(--text-secondary)]">
           No tweets posted yet. Be the first to share something!
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 sm:gap-4 w-full min-w-0">
           {tweets.map((tweet) => (
             <TweetCard key={tweet._id} tweet={tweet} onDelete={handleDeleteTweet} />
           ))}

@@ -106,7 +106,7 @@ export default function VideoPlayer({ src, poster }) {
   return (
     <div
       ref={containerRef}
-      className="relative group w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)]"
+      className="relative group w-full aspect-video bg-black rounded-xl sm:rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)]"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => isPlaying && setShowControls(false)}
     >
@@ -117,18 +117,19 @@ export default function VideoPlayer({ src, poster }) {
         className="w-full h-full object-contain cursor-pointer"
         onClick={togglePlay}
         autoPlay
+        playsInline
       />
 
       {/* Video Overlay Controls */}
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-between p-4 transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-between p-2 sm:p-4 transition-opacity duration-300 ${
           showControls || !isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <div />
 
         {/* Bottom Control Bar */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1.5 sm:gap-2">
           {/* Progress Slider */}
           <input
             type="range"
@@ -136,19 +137,19 @@ export default function VideoPlayer({ src, poster }) {
             max={duration || 100}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-purple-500 hover:h-2 transition-all"
+            className="w-full h-1 sm:h-1.5 bg-white/30 rounded-lg appearance-none cursor-pointer accent-purple-500 hover:h-2 transition-all"
           />
 
-          <div className="flex items-center justify-between gap-4 text-white text-sm">
+          <div className="flex items-center justify-between gap-2 sm:gap-4 text-white text-xs sm:text-sm">
             {/* Play/Pause & Time & Volume */}
-            <div className="flex items-center gap-4">
-              <button onClick={togglePlay} className="p-1.5 rounded-full hover:bg-white/20 transition-colors">
-                {isPlaying ? <FiPause size={20} /> : <FiPlay size={20} />}
+            <div className="flex items-center gap-2 sm:gap-4">
+              <button onClick={togglePlay} className="p-1 sm:p-1.5 rounded-full hover:bg-white/20 transition-colors">
+                {isPlaying ? <FiPause size={18} className="sm:text-[20px]" /> : <FiPlay size={18} className="sm:text-[20px]" />}
               </button>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <button onClick={toggleMute} className="p-1 rounded-full hover:bg-white/20 transition-colors">
-                  {isMuted || volume === 0 ? <FiVolumeX size={18} /> : <FiVolume2 size={18} />}
+                  {isMuted || volume === 0 ? <FiVolumeX size={16} className="sm:text-[18px]" /> : <FiVolume2 size={16} className="sm:text-[18px]" />}
                 </button>
                 <input
                   type="range"
@@ -157,17 +158,17 @@ export default function VideoPlayer({ src, poster }) {
                   step="0.05"
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
-                  className="w-16 h-1 bg-white/40 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                  className="w-10 sm:w-16 h-1 bg-white/40 rounded-lg appearance-none cursor-pointer accent-purple-500"
                 />
               </div>
 
-              <span className="text-xs font-mono text-gray-300">
+              <span className="text-[10px] sm:text-xs font-mono text-gray-300 whitespace-nowrap">
                 {formatDuration(currentTime)} / {formatDuration(duration)}
               </span>
             </div>
 
             {/* Speed & Fullscreen */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <div
                 className="relative"
                 onMouseEnter={handleSpeedMouseEnter}
@@ -175,9 +176,9 @@ export default function VideoPlayer({ src, poster }) {
               >
                 <button
                   onClick={() => setShowSpeedMenu((prev) => !prev)}
-                  className="flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
+                  className="flex items-center gap-1 text-[10px] sm:text-xs font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
                 >
-                  <FiSettings size={14} />
+                  <FiSettings size={12} className="sm:text-[14px]" />
                   <span>{playbackSpeed}x</span>
                 </button>
                 {showSpeedMenu && (
@@ -201,8 +202,8 @@ export default function VideoPlayer({ src, poster }) {
                 )}
               </div>
 
-              <button onClick={toggleFullscreen} className="p-1.5 rounded-full hover:bg-white/20 transition-colors">
-                {isFullscreen ? <FiMinimize size={18} /> : <FiMaximize size={18} />}
+              <button onClick={toggleFullscreen} className="p-1 sm:p-1.5 rounded-full hover:bg-white/20 transition-colors">
+                {isFullscreen ? <FiMinimize size={16} className="sm:text-[18px]" /> : <FiMaximize size={16} className="sm:text-[18px]" />}
               </button>
             </div>
           </div>
