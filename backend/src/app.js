@@ -5,8 +5,19 @@ import { ApiError } from "./utils/ApiError.js"
 
 const app = express()
 
+const allowedOrigins = new Set([
+    "http://localhost:5173",
+    "https://videotube-fullstack.onrender.com",
+    ...(process.env.CORS_ORIGIN || "")
+        .split(",")
+        .map((origin) => origin.trim())
+        .filter(Boolean)
+])
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+    origin: (origin, callback) => {
+        callback(null, !origin || allowedOrigins.has(origin))
+    },
     credentials: true
 }))
 

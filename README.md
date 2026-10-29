@@ -63,7 +63,7 @@ npm install
 # Configure environment variables in .env
 PORT=8000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/videotube
-CORS_ORIGIN=http://localhost:5173
+CORS_ORIGIN=http://localhost:5173,https://videotube-fullstack.onrender.com
 ACCESS_TOKEN_SECRET=videotube-secret-access-token-key-2026
 ACCESS_TOKEN_EXPIRY=1d
 REFRESH_TOKEN_SECRET=videotube-secret-refresh-token-key-2026
@@ -75,6 +75,8 @@ npm run seed
 # Start development server
 npm run dev
 ```
+
+For deployments, set the backend's `CORS_ORIGIN` environment variable to the exact frontend origin(s), separated by commas. The local Vite origin and the deployed Render frontend are allowed by default.
 
 ### 2. Frontend Setup
 ```bash
