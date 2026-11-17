@@ -165,13 +165,13 @@ const getVideoById = asyncHandler(async (req, res) => {
                     {
                         $addFields: {
                             subscribersCount: { $size: "$subscribers" },
-                            isSubscribed: {
+                            isSubscribed: req.user?._id ? {
                                 $cond: {
-                                    if: { $in: [req.user?._id, "$subscribers.subscriber"] },
+                                    if: { $in: [new mongoose.Types.ObjectId(req.user._id), "$subscribers.subscriber"] },
                                     then: true,
                                     else: false
                                 }
-                            }
+                            } : false
                         }
                     },
                     {
@@ -198,19 +198,23 @@ const getVideoById = asyncHandler(async (req, res) => {
             $addFields: {
                 owner: { $first: "$owner" },
                 likesCount: { $size: "$likes" },
-                isLiked: {
+                isLiked: req.user?._id ? {
                     $cond: {
-                        if: { $in: [req.user?._id, "$likes.likedBy"] },
+                        if: { $in: [new mongoose.Types.ObjectId(req.user._id), "$likes.likedBy"] },
                         then: true,
                         else: false
                     }
-                }
+                } : false
             }
         }
     ]);
 
     if (!video?.length) {
         throw new ApiError(404, "Video not found");
+    }
+
+    if (!video[0].isPublished && (!req.user?._id || video[0].owner?._id?.toString() !== req.user._id.toString())) {
+        throw new ApiError(404, "Video not found or is private");
     }
 
     return res

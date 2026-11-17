@@ -181,15 +181,19 @@ export default function Watch() {
               <span>Share</span>
             </button>
 
-            {user && (
-              <button
-                onClick={() => setShowPlaylistModal(true)}
-                className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all"
-              >
-                <FiBookmark size={14} className="sm:text-[16px]" />
-                <span>Save</span>
-              </button>
-            )}
+            <button
+              onClick={() => {
+                if (!user) {
+                  toast.error('Please sign in to save videos to playlists');
+                  return;
+                }
+                setShowPlaylistModal(true);
+              }}
+              className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all"
+            >
+              <FiBookmark size={14} className="sm:text-[16px]" />
+              <span>Save</span>
+            </button>
           </div>
         </div>
 

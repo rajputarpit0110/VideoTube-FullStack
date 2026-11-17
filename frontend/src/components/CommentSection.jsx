@@ -102,9 +102,12 @@ export default function CommentSection({ videoId }) {
             type="text"
             placeholder={user ? "Add a comment..." : "Sign in to leave a comment"}
             value={newComment}
-            disabled={!user}
+            readOnly={!user}
+            onClick={() => {
+              if (!user) toast.error('Please sign in to comment');
+            }}
             onChange={(e) => setNewComment(e.target.value)}
-            className="w-full bg-[var(--bg-secondary)] border-b border-[var(--border-color)] focus:border-purple-500 text-[var(--text-primary)] text-xs sm:text-sm px-2.5 py-1.5 sm:px-3 sm:py-2 outline-none transition-colors"
+            className="w-full bg-[var(--bg-secondary)] border-b border-[var(--border-color)] focus:border-purple-500 text-[var(--text-primary)] text-xs sm:text-sm px-2.5 py-1.5 sm:px-3 sm:py-2 outline-none transition-colors cursor-text"
           />
           {user && (
             <div className="flex justify-end gap-2">
